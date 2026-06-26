@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class HairCut extends Model
+class ReservationItem extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'type',
-        'price',
-        'duration'
+        'reservation_id',
+        'hair_cut_id',
     ];
 }

@@ -16,4 +16,12 @@ class Reservation extends Model
         'status',
         'note'
     ];
+
+    public function person(){
+        return $this->belongsTo(Person::class);
+    }
+
+    public function items(){
+        return $this->hasMany(ReservationItem::class);
+    }
 }
