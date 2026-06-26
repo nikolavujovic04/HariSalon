@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Http\Resources\ReservationCollection;
+use App\Http\Resources\ReservationResource;
+use App\Models\Person;
 use App\Models\Reservation;
+use App\Models\ReservationItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ReservationController extends Controller
 {
@@ -21,7 +23,7 @@ class ReservationController extends Controller
         ->orderBy('reservation_time')
         ->get();
         
-        return ReservationCollection::collection($reservations);
+        return ReservationResource::collection($reservations);
     }
 
     /**
@@ -37,7 +39,42 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'email' => 'required|email',
+            'phone_number' => 'required|string',
+            'reservation_date' => 'required|date|after:today',
+            'reservation_time' => 'required|date_format:H:i',
+            'note' => 'nullable|string',
+            'haircuts' => 'required|array',
+            'haircuts.*' => 'exists:hair_cuts,id'
+        ]);
+
+        $person = Person::firstOrCreate(
+            ['email', $request->email],
+            [
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'phone_number' => $request->phone_number,
+            ]
+        );
+
+        $reservation = Reservation::class([
+            'person_id' => $person->id,
+            'reservation_date' => $request->reservation_date,
+            'reservation_time' => $request->reservation_time,
+            'note' => $request->note,
+        ]);
+
+        foreach($request->haircuts as $haircutId){
+            ReservationItem::create([
+                'reservation_id' => $reservation->id,
+                'haircut_id' => $haircutId
+            ]);
+        }
+
+        return new ReservationResource($reservation->load(['person', 'items.haircut']));
     }
 
     /**
@@ -45,7 +82,7 @@ class ReservationController extends Controller
      */
     public function show(Reservation $reservation)
     {
-        //
+        return new ReservationResource($reservation->load(['person','items.haircut']));
     }
 
     /**
@@ -61,7 +98,10 @@ class ReservationController extends Controller
      */
     public function update(Request $request, Reservation $reservation)
     {
-        //
+        $reservation->update([
+            'status' => $request->status,
+            'note' => $reservation->note
+        ]);
     }
 
     /**
@@ -69,6 +109,11 @@ class ReservationController extends Controller
      */
     public function destroy(Reservation $reservation)
     {
-        //
+        $reservation->delete();
+
+        return response()
+            ->json([
+                'message' => 'Reservation deleted'
+            ], 200);
     }
 }
