@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('type');
             $table->double('price');
+            $table->integer('duration')->nullable();
             $table->timestamps();
         });
     }

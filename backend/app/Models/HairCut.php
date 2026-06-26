@@ -14,4 +14,8 @@ class HairCut extends Model
         'price',
         'duration'
     ];
+
+    public function reservationItems(){
+        return $this->hasMany(ReservationItem::class);
+    }
 }

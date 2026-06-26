@@ -15,7 +15,7 @@ class Person extends Model
         'phone_number'
     ];
 
-    public function reservation(){
+    public function reservations(){
         return $this->hasMany(Reservation::class);
     }
 }

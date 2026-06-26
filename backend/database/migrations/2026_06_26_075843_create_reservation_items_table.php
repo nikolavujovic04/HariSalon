@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('reservation_items', function (Blueprint $table) {
             $table->id('id');
             $table->foreignId('reservation_id')->constrained()->onDelete('cascade');
-            $table->foreignId('haircut_id')->constrained()->onDelete('cascade');
+            $table->foreignId('haircut_id')->constrained('hair_cuts')->onDelete('cascade');
             $table->timestamps();
         });
     }
