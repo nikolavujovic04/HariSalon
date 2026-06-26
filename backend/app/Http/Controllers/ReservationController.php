@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ReservationCollection;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,15 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        //
+        $reservations = Reservation::with(['person', 'items.haircut'])->whereBetween('reservation_date',[
+            now(),
+            now()->addDays(7)
+        ])
+        ->orderBy('reservation_date')
+        ->orderBy('reservation_time')
+        ->get();
+        
+        return ReservationCollection::collection($reservations);
     }
 
     /**

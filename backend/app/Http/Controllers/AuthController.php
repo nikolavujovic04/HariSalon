@@ -15,7 +15,7 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => 'required|string'
         ]);
-        
+
         if(!Auth::attempt($request->only('email','password'))){
             return response()
             ->json(
@@ -28,8 +28,18 @@ class AuthController extends Controller
 
         return response()
             ->json([
+                'message' => 'Hi '. $user->name.', Welcome back',
                 'access_token'=> $token,
                 'token_type' => 'Bearer'
+            ]);
+    }
+
+    public function logout(Request $request){
+        $request->user()->currentAccessToken()->delete();
+
+        return response()
+            ->json([
+                'message' => 'Logged out successfully'
             ]);
     }
 }
