@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HairCutController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ReservationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,8 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('/haircuts', [HairCutController::class, 'store']);
     Route::put('/haircuts/{hairCut}', [HairCutController::class, 'update']);
     Route::delete('/haircuts/{hairCut}', [HairCutController::class, 'destroy']);
+
+    Route::get('/earnings', [ReportController::class, 'earnings']);
 
     Route::post('/logout', [AuthController::class, 'logout']);
 });
