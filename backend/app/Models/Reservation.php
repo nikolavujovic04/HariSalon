@@ -15,7 +15,8 @@ class Reservation extends Model
         'reservation_date',
         'reservation_time',
         'status',
-        'note'
+        'note',
+        'total_price'
     ];
 
     public function person(){

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Http\Resources\ReservationResource;
+use App\Models\HairCut;
 use App\Models\Person;
 use App\Models\Reservation;
 use App\Models\ReservationItem;
@@ -39,7 +40,7 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'first_name' => 'required|string',
             'last_name' => 'required|string',
             'email' => 'required|email',
@@ -52,7 +53,7 @@ class ReservationController extends Controller
         ]);
 
         $person = Person::firstOrCreate(
-            ['email', $request->email],
+            ['email' => $request->email],
             [
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
@@ -60,11 +61,14 @@ class ReservationController extends Controller
             ]
         );
 
-        $reservation = Reservation::class([
+        $totalPrice = HairCut::whereIn('id', $request->haircuts)->sum('price');
+
+        $reservation = Reservation::create([ 
             'person_id' => $person->id,
             'reservation_date' => $request->reservation_date,
             'reservation_time' => $request->reservation_time,
             'note' => $request->note,
+            'total_price' => $totalPrice,
         ]);
 
         foreach($request->haircuts as $haircutId){
