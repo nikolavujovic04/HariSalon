@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\HairCutResource;
 use App\Models\HairCut;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class HairCutController extends Controller
 {
@@ -12,7 +14,8 @@ class HairCutController extends Controller
      */
     public function index()
     {
-        //
+        $haircuts = HairCut::all();
+        return new HairCutResource($haircuts);
     }
 
     /**
@@ -28,7 +31,21 @@ class HairCutController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(),[
+            'type' => 'required|string',
+            'price' => 'required|numeric|min:0',
+            'duration' => 'required|integer|min:20',
+        ]);
+
+        if($validator->fails()){
+            return response()->json(
+                ['message', 'Failed to create new haircut'], 402
+            );
+        }
+
+        $haircut = HairCut::create($request->only(['type', 'price', 'duration']));
+        
+        return new HairCutResource($haircut);
     }
 
     /**
