@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
+import ReservationButton from '../components/button/ReservationButton'
 import "../styles/Navbar.css"
 
 const links = [
@@ -44,9 +45,8 @@ export function Navbar() {
           ))}
         </ul>
 
-        <a href="#booking" className="navbar-cta">
-          Reserve
-        </a>
+        <ReservationButton text="Rezervisi" className="btn-primary" />
+
 
         <button
           onClick={() => setOpen((v) => !v)}

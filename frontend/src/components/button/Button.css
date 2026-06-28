@@ -1,0 +1,55 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  padding: 0.75rem 1.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+  transform: scale(1.03);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+/* Primarni - tamno braon */
+.btn-primary {
+  background: #2C1A0E;
+  color: #FAF7F2;
+  box-shadow: 0 4px 16px rgba(44, 26, 14, 0.2);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 6px 24px rgba(44, 26, 14, 0.3);
+}
+
+/* Gold - zlatni */
+.btn-gold {
+  background: #C9A84C;
+  color: #FAF7F2;
+  box-shadow: 0 4px 16px rgba(201, 168, 76, 0.3);
+}
+
+.btn-gold:hover {
+  box-shadow: 0 6px 24px rgba(201, 168, 76, 0.4);
+}
+
+/* Beli - outline */
+.btn-white {
+  background: transparent;
+  color: #2C1A0E;
+  border: 1.5px solid #2C1A0E;
+}
+
+.btn-white:hover {
+  background: #2C1A0E;
+  color: #FAF7F2;
+}
