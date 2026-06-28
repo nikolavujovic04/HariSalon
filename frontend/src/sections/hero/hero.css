@@ -1,0 +1,125 @@
+.background {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100vh;
+  margin-top: 70px;
+}
+
+.background-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.60);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.hero-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #E8C96A;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  color: white;
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  max-width: 700px;
+  margin-bottom: 2rem;
+}
+
+.hero-accent {
+  color: #E8C96A; /* svetlija nijansa žute */
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* u btn.css ili hero.css */
+.btn-primary {
+  background: #6B3F2A; /* svetlija braon */
+  color: #FAF7F2;
+  box-shadow: 0 4px 16px rgba(107, 63, 42, 0.3);
+}
+
+.btn-primary:hover {
+  background: #7D4A32;
+  box-shadow: 0 6px 24px rgba(107, 63, 42, 0.4);
+}
+
+.hero-stats {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  padding: 0.6rem 1.25rem;
+}
+
+.hero-stats__rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hero-stats__stars {
+  display: flex;
+  gap: 2px;
+}
+
+.hero-stats__star {
+  color: #E8C96A;
+  font-size: 1rem;
+}
+
+.hero-stats__score {
+  color: white;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.hero-stats__divider {
+  width: 1px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.hero-stats__cuts {
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+}

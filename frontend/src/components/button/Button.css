@@ -5,7 +5,7 @@
   border-radius: 9999px;
   padding: 0.75rem 1.75rem;
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: 400;
   cursor: pointer;
   border: none;
   text-decoration: none;
@@ -44,12 +44,12 @@
 
 /* Beli - outline */
 .btn-white {
-  background: transparent;
+  background: white;
   color: #2C1A0E;
-  border: 1.5px solid #2C1A0E;
+  border: 1.5px solid white;
 }
 
 .btn-white:hover {
-  background: #2C1A0E;
-  color: #FAF7F2;
+  background: rgba(255, 255, 255, 0.85);
+  color: #2C1A0E;
 }
