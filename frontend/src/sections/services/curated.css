@@ -1,0 +1,143 @@
+.curated_services{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  background-color: #FAF7F2;
+}
+
+.text_section {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.text_section h1 {
+  margin-bottom: 0.5rem;
+  color: black;
+}
+
+.text_section p:last-child {
+  margin-top: 0;
+}
+
+.card_section{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 100px;
+}
+
+.service-card {
+  background: white;
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  border: solid 1px #9e9e9e;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(44, 26, 14, 0.1);
+}
+
+.service-card:hover .service-card__icon {
+  background: #2C1A0E;
+  color: #FAF7F2;
+}
+
+.service-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.service-card__icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: #2C1A0E;
+  box-shadow: 0 2px 8px rgba(44, 26, 14, 0.08);
+  transition: background 0.6s ease, color 0.4s ease;
+}
+
+.service-card__arrow {
+  color: #9e9e9e;
+  font-size: 1.1rem;
+  transition: color 0.2s ease;
+}
+
+.service-card:hover .service-card__arrow {
+  color: #2C1A0E;
+}
+
+.service-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.service-card__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #2C1A0E;
+  margin: 0;
+}
+
+.service-card__description {
+  font-size: 0.875rem;
+  color: #6b6375;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.service-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e4e7;
+}
+
+.service-card__duration {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.875rem;
+  color: #6b6375;
+}
+
+.service-card__clock {
+  font-size: 1rem;
+}
+
+.service-card__price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2C1A0E;
+}
+
+
+@media (max-width: 768px) {
+  .card_section{
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .card_section {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
